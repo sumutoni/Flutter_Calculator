@@ -116,54 +116,12 @@ class _HomeState extends State<Home> {
   }
 
   void calculation(String text){
-    
-
     if (text == '+' || text == '-' || text == '/' || text == 'x'){
-      fnum = double.parse(displayText);
-      
-      if (preOp == ''){
-        op = text; 
-      }
-      else{
-        preOp = op;
-        op = text;
-      }
+      fnum = double.parse(displayText);    
+      op = text; 
       setState(() {
-          displayText = '0';
-        });
-    }
-    if(preOp != ''){
-      snum = double.parse(displayText);
-      if(preOp == '+') {
-      add();
-      finalResult = doesContainDecimal(finalResult);
-      setState(() {
-        displayText = finalResult.toString();
+        displayText = '0';
       });
-      
-      
-      }else if( preOp == '-') {
-        sub();
-        finalResult = doesContainDecimal(finalResult);
-        setState(() {
-            displayText = finalResult.toString();
-          });
-          
-      }else if( preOp == 'x') {
-        mult();
-        finalResult = doesContainDecimal(finalResult);
-        setState(() {
-            displayText = finalResult.toString();
-          });
-
-      }else if( preOp == '/') {
-        div();
-        finalResult = doesContainDecimal(finalResult);
-        setState(() {
-            displayText = finalResult.toString();
-          });
-        
-      }
     }
     if (text == '='){
       snum = double.parse(displayText);
@@ -243,6 +201,7 @@ class _HomeState extends State<Home> {
           
             setState(() {
               if (op=='='){
+                op = '';
                 displayText = text;
               }
               else{
